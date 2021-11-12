@@ -216,15 +216,92 @@ function BinarySearchTree() {
             if (current === this.root) {
                 this.root = null
             }
+            // 删除的是左子节点
             else if (isLeftChild) {
                 parent.left = null
             }
+            // 删除的是右子节点
             else {
                 parent.right = null
             }
         }
 
         // 2.2 删除的节点有一个子节点
+        // 2.2.1 current只有左子节点
+        else if (current.right === null) {
+            // current为root节点
+            if (current === this.root) {
+                this.root = current.left
+            }
+            // current是左子节点
+            else if (isLeftChild) {
+                parent.left = current.left
+            }
+            // current是右子节点
+            else {
+                parent.right = current.left
+            }
+        }
+        // 2.2.2 current只有右子节点
+        else if (current.left === null) {
+            // current为root节点
+            if (current === this.root) {
+                this.root = current.right
+            }
+            // current是左子节点
+            else if (isLeftChild) {
+                parent.left = current.right
+            }
+            // current是右子节点
+            else {
+                parent.right = current.right
+            }
+        }
+
+        // 2.3 删除的节点有两个子节点
+        else {
+            // 1. 获取后继节点
+            var succssor = this.getSuccssor(current)
+
+            // 2. 判断是否为根节点
+            if (current === this.root) {
+                this.root = succssor
+            }
+            // 左子节点
+            else if (isLeftChild) {
+                parent.left = succssor
+            }
+            // 右子节点
+            else {
+                parent.right = succssor
+            }
+
+            // 3. 将删除节点的左子树 = current.left
+            succssor.left = current.left
+        }
+    }
+
+    // 找后继的方法
+    BinarySearchTree.prototype.getSuccssor = function(delNode) {
+        // 1. 定义变量，保存找到的后继
+        var succssor = delNode;
+        var current = delNode
+        var succssorParent = delNode
+
+        // 2. 循环查找
+        while(current !== null) {
+            succssorParent = succssor
+            succssor = current
+            current = current.left
+        }
+
+        // 3. 判断寻找的后继节点是否直接就是delNode的right节点
+        if (succssor !== delNode.right) {
+            succssorParent.left = succssor.right
+            succssor.right = delNode.right
+        }
+
+        return succssor
     }
 }
 
@@ -246,7 +323,7 @@ bst.insert(20)
 bst.insert(18)
 bst.insert(25)
 bst.insert(6)
-console.log(JSON.stringify(bst))
+// console.log(JSON.stringify(bst))
 
 // 2. 测试遍历
 var resultStr = ''
@@ -257,21 +334,30 @@ var resultStr = ''
 // 11 7 5 3 6 9 8 10 15 13 12 14 20 18 25 
 
 // 中序
-bst.midOrderTraversal(function(key) {
-    resultStr += key + ' '
-})
+// bst.midOrderTraversal(function(key) {
+//     resultStr += key + ' '
+// })
 // 7 5 3 6 9 8 10 11 15 13 12 14 20 18 25 
 
 // 后序序
-bst.postOrderTraversal(function(key) {
-    resultStr += key + ' '
-})
+// bst.postOrderTraversal(function(key) {
+//     resultStr += key + ' '
+// })
 // console.log('resultStr', resultStr)
-console.log('max', bst.max())
-console.log('min', bst.min())
+// console.log('max', bst.max())
+// console.log('min', bst.min())
 
 
 // 搜索
-console.log(bst.search(25))
-console.log(bst.search(24))
-console.log(bst.search(7))
+// console.log(bst.search(25))
+// console.log(bst.search(24))
+// console.log(bst.search(7))
+
+// 6. 测试删除代码
+bst.remove(9)
+bst.remove(7)
+bst.remove(15)
+bst.postOrderTraversal(function(key) {
+    resultStr += key + ' '
+})
+console.log(resultStr)
