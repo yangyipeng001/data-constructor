@@ -171,3 +171,71 @@
 删除操作总结：
 ![删除1](../images/tree-delete-1.png)
 
+
+### 二叉搜索树的缺陷
+- 平衡二叉树，插入/查找等的操作效率为O(logN)。
+- 非平衡二叉树（相当于一个链表），插入/查找等的操作效率为O(N)。
+
+### 二叉搜索树 - 平衡二叉树
+- AVL树：
+    ![AVL树](../images/tree-type-1.png)
+- 红黑树：
+    ![红黑树](../images/tree-type-2.png)
+
+### 红黑树
+#### 红黑树规则
+![红黑树规则](../images/red-black-tree-1.png)
+
+#### 红黑树相对平衡
+![红黑树相对平衡](../images/red-black-tree-2.png)
+
+
+#### 变色
+![变色](../images/red-black-tree-3.png)
+
+#### 旋转
+![旋转](../images/red-black-tree-4.png)
+
+#### 插入操作
+情况1、2：
+![情况1、2](../images/red-black-tree-5.png)
+
+情况3：
+![情况3](../images/red-black-tree-6.png)
+
+情况4：
+![情况4](../images/red-black-tree-7.png)
+
+情况5：
+![情况5](../images/red-black-tree-8.png)
+
+#### 红黑树案例
+插入：10 9 8 7 6 5 4 3 2 1
+
+插入：10 9 8
+![插入：10 9 8](../images/red-black-tree-9.png)
+
+插入：7
+![插入：7](../images/red-black-tree-10.png)
+
+插入：6
+![插入：6](../images/red-black-tree-11.png)
+
+插入：5
+![插入：5](../images/red-black-tree-12.png)
+
+插入：4
+![插入：4](../images/red-black-tree-13.png)
+
+插入：3
+![插入：3](../images/red-black-tree-14.png)
+
+插入：2
+![插入：2](../images/red-black-tree-15.png)
+
+插入：1
+![插入：1](../images/red-black-tree-16.png)
+
+
+
+## 23树和234树？？待学习
