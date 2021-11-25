@@ -151,11 +151,6 @@ function ArrayList() {
         this.quick(0, this.array.length - 1)
     }
 
-    /**
-     * 
-     * 66-88-12-87-100-5-566-23
-     * 23-88-12-87-100-5-66-87
-     */
     ArrayList.prototype.quick = function(left, right) {
         // 1.结束条件
         if (left >= right) {
