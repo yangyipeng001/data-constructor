@@ -37,7 +37,7 @@ function ListNode(val, next) {
 
 
 var mergeTwoLists = function(l1, l2) {
-    let curr = new ListNode();
+    var curr = new ListNode();
 
     while (l1 !== null && l2 !== null ) {
         if (l1.val < l2.val) {
@@ -48,16 +48,16 @@ var mergeTwoLists = function(l1, l2) {
             curr.next = l2;
             l2 = l2.next;
         }
-        
+
         curr = curr.next;
     }
 
-    if (l1 !== null) {
-        curr.next = l1;
+    if (l1 === null) {
+        curr.next = l2;
     }
 
-    if (l2 !== null) {
-        curr.next = l2;
+    if (l2 === null) {
+        curr.next = l1;
     }
 
     return curr
